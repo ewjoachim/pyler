@@ -37,7 +37,7 @@ class Problem0001(EulerProblem):
     real_input = 0
 
     def solver(self, input_val):
-        return 1
+        return 0
 
 ```
 
