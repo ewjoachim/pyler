@@ -1,0 +1,8 @@
+
+.pyler.conf
+
+tests/test.conf.json
+
+euler/*
+
+*.egg-info
