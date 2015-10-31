@@ -21,6 +21,28 @@ pyler gen . 1
 This will generate a file that has more or less everything for beginning the real work.
 Just fill the variables.
 
+```python
+from pyler import EulerProblem
+
+
+class Problem0001(EulerProblem):
+    """
+    If we list all the natural numbers below 10 that are multiples of 3 or 5, we
+    get 3, 5, 6 and 9. The sum of these multiples is 23. Find the sum of all the
+    multiples of 3 or 5 below 1000.
+    """
+    problem_id = 1
+    simple_input = 0
+    simple_output = 1
+    real_input = 0
+
+    def solver(self, input_val):
+        return 1
+
+```
+
+BTW : yes, the docstring is scraped from the website.
+
 Test your solution
 ------------------
 
