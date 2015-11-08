@@ -3,6 +3,6 @@
 
 tests/test.conf.json
 
-euler/*
-
 *.egg-info
+
+dist/*

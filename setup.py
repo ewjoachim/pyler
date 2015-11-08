@@ -54,7 +54,7 @@ REQUIREMENTS = [
 
 setup(
     name=NAME,
-    version="0.0.1",
+    version="0.1.1",
     author=", ".join([author[0] for author in AUTHORS]),
     author_email=", ".join([author[1] for author in AUTHORS]),
     url=WEBSITE,

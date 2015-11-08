@@ -1,3 +1,5 @@
+[![PyPI version](https://badge.fury.io/py/pyler.svg)](https://badge.fury.io/py/pyler)
+
 Pyler
 =====
 
@@ -9,17 +11,25 @@ How ?
 ```bash
 pip install pyler
 ```
-(TODO : it's not on pypi yet ^^)
 
 Generate a file
 ---------------
 
 ```bash
-pyler gen . 1
+# generates the file for problem 1
+pyler gen 1
+# generates the file for problems 1 to 10, 14 and 17 to 24
+pyler gen 1-10,14,17-24
+# generates the first not-yet-generated problem
+pyler gen next
+# generates all available problems
+pyler gen all
 ```
 
+You get the idea !
+
 This will generate a file that has more or less everything for beginning the real work.
-Just fill the variables.
+Just fill the variables and code your solution into solver.
 
 ```python
 from pyler import EulerProblem
@@ -39,7 +49,16 @@ class Problem0001(EulerProblem):
     def solver(self, input_val):
         return 0
 
+if __name__ == '__main__':
+    import unittest
+    unittest.main()
+
 ```
+
+You can chage the path where the files are being generated using ``--path`` and
+the template used with ``--template=path/to/template.py``, the template file must be compatible
+with Python's [``.format``](https://pyformat.info/) function and will recieve 2 variables : ``doc``
+and ``problem_id``
 
 BTW : yes, the docstring is scraped from the website.
 
@@ -47,9 +66,13 @@ Test your solution
 ------------------
 
 ```bash
+# Tests the implementation of the first problem
 pyler test 1
+# Well I'm sure you know what this does
+pyler test 1-10,14,17-24
+# Tests the last problem
+pyler test last
 ```
-(TODO : Not working yel but you can do ``python -m unittest problem_0001``)
 
 Launching unittest on your solution module will test your solution for :
 
@@ -63,3 +86,6 @@ Launching unittest on your solution module will test your solution for :
  * A test ensuring that your implementation takes less than 1 minute. If
    you're not using Windows, it will stop at 1 minute. Otherwise, it will
    fail when the computation is over.
+
+You can use any number of ``--only=x`` and ``--skip=x`` flags with x
+being ``simple``, ``real``, ``time``.
