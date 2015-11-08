@@ -11,21 +11,31 @@ from .config import Config
 from .utils import default_open
 
 
-class Website():
+class Website(object):
     base_url = "https://projecteuler.net"
+    session_problem_url = "about"
     _session = None
     captcha_tries = 3
 
     class NoCredentials(Exception):
         pass
 
+    def get_message(self, soup):
+        try:
+            return soup.select_one("#message").get_text()
+        except AttributeError:
+            return None
+
     def get_problem_content(self, problem_id):
 
         response = self.get(problem_id)
-        if response.status_code != 200:
+        soup = self.soup(response)
+
+        message = self.get_message(soup)
+
+        if message == "Problem not accessible":
             raise ValueError("Cannot access the problem")
 
-        soup = self.soup(response)
         return soup.select_one("div.problem_content").get_text().strip()
 
     def connect(self):
@@ -41,7 +51,7 @@ class Website():
             post_data=credentials,
             url=self.url(url_path="sign_in")
         )
-        if "Sign in successful" not in soup.select_one("#message").get_text():
+        if "Sign in successful" not in self.get_message(soup):
             raise ValueError("Unsuccessful login :(")
 
         config_parser = Config()
@@ -62,6 +72,10 @@ class Website():
 
         return session
 
+    def renew_session(self):
+        self.__class__._session = requests.Session()
+        config = Config().write_elements(session=None)
+
     def url(self, problem_id=None, url_path=None):
         """
         Generates the URL either with a problem id or
@@ -73,9 +87,19 @@ class Website():
 
     def get(self, *args, **kwargs):
         """
-        Calls a GET url
+        Calls a GET url. Arguments include those of the url method, and
+        needs_connection (True or False) that determine if a Connection
+        will be attempted if we detect the session is no loger valid.
         """
-        return self.session.get(self.url(*args, **kwargs))
+        needs_connection = kwargs.pop("needs_connection", False)
+
+        response = self.session.get(self.url(*args, **kwargs))
+        if response.url == self.url(url_path=self.session_problem_url):
+            self.renew_session()
+            if needs_connection:
+                self.connect()
+            response = self.session.get(self.url(*args, **kwargs))
+        return response
 
     def captcha(self, reason, post_data, url):
         """
@@ -95,8 +119,8 @@ class Website():
 
             response = self.session.post(url, data=post_data)
             soup = self.soup(response)
-            message = soup.select_one("#message")
-            if message and "confirmation code" in message.get_text():
+            message = self.get_message(soup)
+            if message and "confirmation code" in message:
                 print("Invalid captcha !")
                 continue
             else:

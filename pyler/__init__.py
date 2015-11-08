@@ -33,10 +33,16 @@ class EulerProblem(unittest.TestCase):
         if cls.solver is EulerProblem.solver:
             raise unittest.SkipTest("Not running the tests for a not implemented problem")
 
-    def test_1_simple_solution_correct(self):
+    def test_simple(self):
+        """
+        Checks the simple example
+        """
         self.assertEqual(self.solve_simple(), self.simple_output)
 
-    def test_2_real_solution_correct(self):
+    def test_real(self):
+        """
+        Checks the real problem against the website
+        """
         website = Website()
         real_output = self.solve_real()
         self.assertTrue(website.check_solution(self.problem_id, solution=real_output))
@@ -44,7 +50,10 @@ class EulerProblem(unittest.TestCase):
     # Windows has no Alarm signal. Sorry pal.
     use_signal = hasattr(signal, "SIGALRM")
 
-    def test_3_runs_under_one_minute(self):
+    def test_time(self):
+        """
+        Checks that the real problem runs under a minute
+        """
         time_limit = 60
 
         try:
