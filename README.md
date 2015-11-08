@@ -74,7 +74,10 @@ pyler test 1-10,14,17-24
 pyler test last
 ```
 
-Launching unittest on your solution module will test your solution for :
+You may also use unittest or the testing tool of your choice that accept unittest TestCases.
+Calling Python on the problem file directly will also launch the tests.
+
+Launching the tests on your solution module will test your solution for :
 
  * The simple test case
  * The real test case (it will check on the real website to do so
