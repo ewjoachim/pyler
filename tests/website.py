@@ -16,6 +16,7 @@ class WebsiteTests(unittest.TestCase):
 
     def get_website(self):
         website = Website()
+        website.renew_session()
         return website
 
     def setUp(self):
@@ -41,10 +42,10 @@ class WebsiteTests(unittest.TestCase):
                 "file containing something like : "
                 """{"username": "yay", "password": "ohoho"}"""
             )
+
     def prepare_connection(self):
         credentials = self.get_real_credentials()
         self.prepare_answers([credentials["username"], credentials["password"]])
-
 
     def prepare_answers(self, prepared_answers):
         answers.extend(prepared_answers)

@@ -24,7 +24,7 @@ class Website(object):
         try:
             return soup.select_one("#message").get_text()
         except AttributeError:
-            return None
+            return ""
 
     def get_problem_content(self, problem_id):
 

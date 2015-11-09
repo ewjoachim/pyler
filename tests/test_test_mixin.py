@@ -20,7 +20,6 @@ class Problem1(EulerProblem):
         return sum(element for element in range(input_val) if any(element % x == 0 for x in [3, 5]))
 
 
-
 class BadProblem1(EulerProblem):
     """
     Multiples of 3 and 5
@@ -35,13 +34,13 @@ class BadProblem1(EulerProblem):
     def solver(self, input_val):
         return 14
 
-    def test_1_simple_solution_correct(self):
+    def test_simple(self):
         with self.assertRaises(AssertionError):
-            super().test_1_simple_solution_correct()
+            super().test_simple()
 
-    def test_2_real_solution_correct(self):
+    def test_real(self):
         with self.assertRaises(AssertionError):
-            super().test_2_real_solution_correct()
+            super().test_real()
 
     simple_input = 10
     simple_output = 23
