@@ -55,7 +55,7 @@ if __name__ == '__main__':
 
 ```
 
-You can chage the path where the files are being generated using ``--path`` and
+You can change the path where the files are being generated using ``--path`` and
 the template used with ``--template=path/to/template.py``, the template file must be compatible
 with Python's [``.format``](https://pyformat.info/) function and will recieve 2 variables : ``doc``
 and ``problem_id``
