@@ -1,4 +1,4 @@
-from os import path
+import urllib
 import tempfile
 import itertools
 import pickle
@@ -83,7 +83,7 @@ class Website(object):
         """
         if problem_id:
             url_path = "problem={}".format(problem_id)
-        return path.join(self.base_url, url_path)
+        return urllib.parse.urljoin(self.base_url, url_path)
 
     def get(self, *args, **kwargs):
         """
