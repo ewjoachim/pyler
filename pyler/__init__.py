@@ -70,4 +70,5 @@ class EulerProblem(unittest.TestCase):
         except TimeoutError:
             self.fail("Test failed to end in less than a minute.")
         finally:
-            signal.signal(signal.SIGALRM, old_handler)
+            if self.use_signal:
+                signal.signal(signal.SIGALRM, old_handler)
