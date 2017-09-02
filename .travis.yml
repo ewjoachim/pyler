@@ -13,7 +13,7 @@ matrix:
     - python: 3.6
       env: TOX_ENV=py35-tests
 
-    - env: TOX_ENV=linters
+    - env: TOX_ENV=linting
 
 install:
   - pip install tox codecov
