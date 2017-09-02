@@ -3,7 +3,7 @@ Pyler
 #####
 
 .. image:: https://badge.fury.io/py/pyler.svg
-    :target: https://badge.fury.io/py/pyler
+    :target: https://pypi.org/pypi/pyler
     :alt: PyPI
 
 .. image:: https://travis-ci.org/ewjoachim/pyler.svg?branch=master
