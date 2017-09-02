@@ -69,9 +69,12 @@ def website():
 @pytest.fixture
 def config():
     config = Config()
-    with tempfile.NamedTemporaryFile() as f:
+    try:
+        f = tempfile.NamedTemporaryFile(delete=False)
         os.environ["PYLER_CONF"] = f.name
         yield config
+    finally:
+        os.remove(f.name)
 
 
 @pytest.fixture
