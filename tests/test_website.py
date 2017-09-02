@@ -72,6 +72,7 @@ def config():
     try:
         f = tempfile.NamedTemporaryFile(delete=False)
         os.environ["PYLER_CONF"] = f.name
+        f.close()
         yield config
     finally:
         os.remove(f.name)
