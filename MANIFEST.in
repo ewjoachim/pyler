@@ -1,0 +1,7 @@
+recursive-include pyler *
+prune tests
+global-exclude *.pyc
+exclude .*.yml
+include LICENSE.md
+exclude *.md
+exclude tox.ini
