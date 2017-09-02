@@ -59,8 +59,6 @@ class Config():
                 credentials[key] = utils.user_input(
                     "Project Euler {key}? ".format(key=key))
 
-        print("a ", credentials)
         self["credentials"] = credentials
-        print("b ", self["credentials"])
 
         return credentials
