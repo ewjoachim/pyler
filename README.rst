@@ -108,3 +108,10 @@ Launching the tests on your solution module will test your solution for :
 
 You can use any number of ``--only=x`` and ``--skip=x`` flags with x
 being ``simple``, ``real``, ``time``.
+
+Code of conduct
+---------------
+
+Contributing to this project in any way includes understanding
+and accepting the `Code of Conduct <CODE_OF_CONDUCT.md>`_, that
+will be enforced.

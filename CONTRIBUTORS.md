@@ -15,3 +15,11 @@ also exists with the help of people who didn't contributed commits, but
 rather feedback, comments and discussions, spread the love, etc.
 
 Thank you to everyone who took part !
+
+
+Code of conduct
+---------------
+
+Contributing to this project in any way includes understanding
+and accepting the [Code of Conduct](CODE_OF_CONDUCT.md), that
+will be enforced.
