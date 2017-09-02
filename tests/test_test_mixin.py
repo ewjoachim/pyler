@@ -1,4 +1,5 @@
-import unittest
+from unittest import mock
+
 from pyler import EulerProblem
 
 
@@ -7,7 +8,8 @@ class Problem1(EulerProblem):
     Multiples of 3 and 5
     ====================
     Problem 1
-    If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23.
+    If we list all the natural numbers below 10 that are multiples of 3 or 5,
+    we get 3, 5, 6 and 9. The sum of these multiples is 23.
 
     Find the sum of all the multiples of 3 or 5 below 1000.
     """
@@ -17,7 +19,13 @@ class Problem1(EulerProblem):
     real_input = 1000
 
     def solver(self, input_val):
-        return sum(element for element in range(input_val) if any(element % x == 0 for x in [3, 5]))
+        return sum(element
+                   for element in range(input_val)
+                   if any(element % x == 0 for x in [3, 5]))
+
+    def test_real(self):
+        with mock.patch("pyler.website.check_solution", return_value=True):
+            super().test_real()
 
 
 class BadProblem1(EulerProblem):
@@ -25,7 +33,8 @@ class BadProblem1(EulerProblem):
     Multiples of 3 and 5
     ====================
     Problem 1
-    If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23.
+    If we list all the natural numbers below 10 that are multiples of 3 or 5,
+    we get 3, 5, 6 and 9. The sum of these multiples is 23.
 
     Find the sum of all the multiples of 3 or 5 below 1000.
     """
@@ -39,8 +48,9 @@ class BadProblem1(EulerProblem):
             super().test_simple()
 
     def test_real(self):
-        with self.assertRaises(AssertionError):
-            super().test_real()
+        with mock.patch("pyler.website.check_solution", return_value=False):
+            with self.assertRaises(AssertionError):
+                super().test_real()
 
     simple_input = 10
     simple_output = 23
