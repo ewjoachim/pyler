@@ -25,7 +25,7 @@ How ?
 
 .. code-block:: console
 
-    pip install pyler
+    $ pip install pyler
 
 
 Generate a file
