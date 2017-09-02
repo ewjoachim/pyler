@@ -3,7 +3,7 @@
 History
 =======
 
-0.2.0 (unreleased)
+0.2.0 (2017-09-02)
 ==================
 
 - Refactored most of the code
