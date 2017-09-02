@@ -77,8 +77,7 @@ def complete_problem_ids(problem_ids, path):
         last_id = int(re.match(FILE_NAME_REGEX, last_problem).groups()[0])
         if problem_ids == "next":
             return [last_id + 1]
-        else:
-            return [last_id]
+        return [last_id]
     return problem_ids
 
 

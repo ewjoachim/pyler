@@ -60,7 +60,7 @@ class EulerProblem(unittest.TestCase):
 
         try:
             if self.use_signal:
-                def handler(signum, frame):
+                def handler(signum, frame):  # pylint: disable=unused-argument
                     raise TimeoutError()
                 old_handler = signal.signal(signal.SIGALRM, handler)
                 signal.alarm(time_limit)

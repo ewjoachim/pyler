@@ -3,3 +3,5 @@ tests/test.conf.json
 *.egg-info
 dist/*
 .cache
+.tox
+__pycache__
