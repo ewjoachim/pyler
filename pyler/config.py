@@ -29,9 +29,6 @@ class Config():
     def get_config(self):
         try:
             with open(self.config_file, "r") as handler:
-                if not handler.read():
-                    raise ValueError()
-                handler.seek(0)
                 config = json.load(handler)
         except (IOError, ValueError):
             config = {}
