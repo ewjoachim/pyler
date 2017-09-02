@@ -96,10 +96,10 @@ Calling Python on the problem file directly will also launch the tests.
 
 Launching the tests on your solution module will test your solution for :
 
-* The simple test case
-* The real test case (it will check on the real website to do so the first
+* The simple test case (the one that's given in the statement)
+* The real test case (it will check on the real website to do so). The first
   time, it will ask for your credentials (stored in a local file
-  ``pyler.conf``) and now and then, it will ask you to solve the captchas. If
+  ``.pyler.conf``) and now and then, it will ask you to solve the captchas. If
   you have already validated the problem, it will check the solution from the
   page. Otherwise, it will submit the solution for you.
 * A test ensuring that your implementation takes less than 1 minute. If you're
