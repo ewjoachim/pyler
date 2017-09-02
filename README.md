@@ -1,4 +1,6 @@
 [![PyPI version](https://badge.fury.io/py/pyler.svg)](https://badge.fury.io/py/pyler)
+[![Travis](https://travis-ci.org/ewjoachim/pyler.svg?branch=master)](https://travis-ci.org/ewjoachim/pyler)
+[![Codecov](https://img.shields.io/codecov/c/github/ewjoachim/pyler/master.svg)](https://codecov.io/github/ewjoachim/pyler?branch=master)
 
 Pyler
 =====
