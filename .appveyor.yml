@@ -57,3 +57,7 @@ build: off
 test_script:
   # Run the project tests
   - "tox -e %TOX_ENV%"
+
+after_test:
+ - pip install codecov
+ - "codecov -f "coverage.xml" -t %CODECOV_TOKEN%"
