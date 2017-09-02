@@ -29,7 +29,7 @@ class FakeSession(object):
     def get(self, url):
         self.history.append(url)
         try:
-            path = os.path.join(SAVED, self.answers.pop(0))
+            path = os.path.join(str(SAVED), self.answers.pop(0))
         except IndexError:
             raise IndexError("Not enough pages prepared (history: {})".format(
                 ", ".join(self.history)))
@@ -216,7 +216,7 @@ def test_solve_captcha_problem(website, input, default_open):
 
 
 def test_get_soup(mocker):
-    with open(SAVED / "solved_problem.html") as f:
+    with open(str(SAVED / "solved_problem.html")) as f:
         soup = w.get_soup(mocker.Mock(content=f.read()))
 
     assert "If we list all the natural numbers" in (
@@ -224,21 +224,21 @@ def test_get_soup(mocker):
 
 
 def test_check_solution_answer_good(mocker):
-    with open(SAVED / "answer_correct.html") as f:
+    with open(str(SAVED / "answer_correct.html")) as f:
         soup = w.get_soup(mocker.Mock(content=f.read()))
 
     assert w.check_solution_answer(soup)
 
 
 def test_check_solution_answer_bad(mocker):
-    with open(SAVED / "answer_incorrect.html") as f:
+    with open(str(SAVED / "answer_incorrect.html")) as f:
         soup = w.get_soup(mocker.Mock(content=f.read()))
 
     assert not w.check_solution_answer(soup)
 
 
 def test_check_solution_answer_no_answer(mocker):
-    with open(SAVED / "solved_problem.html") as f:
+    with open(str(SAVED / "solved_problem.html")) as f:
         soup = w.get_soup(mocker.Mock(content=f.read()))
 
     with pytest.raises(ValueError) as exc:
@@ -248,14 +248,14 @@ def test_check_solution_answer_no_answer(mocker):
 
 
 def test_get_already_found_yes(mocker):
-    with open(SAVED / "solved_problem.html") as f:
+    with open(str(SAVED / "solved_problem.html")) as f:
         soup = w.get_soup(mocker.Mock(content=f.read()))
 
     assert w.get_already_found(soup) == 233168
 
 
 def test_get_already_found_no(mocker):
-    with open(SAVED / "new_problem.html") as f:
+    with open(str(SAVED / "new_problem.html")) as f:
         soup = w.get_soup(mocker.Mock(content=f.read()))
 
     assert w.get_already_found(soup) is None
