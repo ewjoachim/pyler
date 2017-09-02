@@ -107,7 +107,7 @@ def test_connect(config, website, input, default_open):
     w.connect(website)
 
     assert config["credentials"] == {"username": "yay", "password": "hoy"}
-    assert config["session"] == "eWF5"  # yay in base64
+    assert config["session"] == "gANDA3lheXEALg=="  # yay in base64|pickle
     assert website.session.posted_data == [{'captcha': '12345',
                                             'username': 'yay',
                                             'password': 'hoy',
@@ -146,7 +146,7 @@ def test_load_session_cookies(mocker):
     """
     Cookies as read from base64
     """
-    config = {"session": "eWF5"}
+    config = {"session": "gANDA3lheXEALg=="}
     session = mocker.Mock()
 
     w.load_session_cookies(config, session)
@@ -162,7 +162,7 @@ def test_save_session_cookies(mocker):
 
     w.save_session_cookies(config, session)
 
-    assert config["session"] == "eWF5"
+    assert config["session"] == "gANDA3lheXEALg=="
 
 
 def test_get_url(website):
