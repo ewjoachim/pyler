@@ -1,8 +1,5 @@
-
 .pyler.conf
-
 tests/test.conf.json
-
 *.egg-info
-
 dist/*
+.cache
