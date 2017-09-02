@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="author" content="Colin Hughes" />
+<meta name="description" content="A website dedicated to the fascinating world of mathematics and programming" />
+<meta name="keywords" content="programming,mathematics,problems,puzzles" />
+<title>Problem 1 - Project Euler</title>
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="stylesheet" type="text/css" href="themes/default/style_default.css" />
+
+<script type="text/x-mathjax-config">
+   MathJax.Hub.Config({
+      jax: ["input/TeX", "output/HTML-CSS"],
+      tex2jax: {
+         inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+         displayMath: [ ["$$","$$"], ["\\[","\\]"] ],
+         processEscapes: true
+      },
+      "HTML-CSS": { availableFonts: ["TeX"] }
+   });
+</script>
+<!--[if !IE]><!-->
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full,Safe"></script>
+<!--<![endif]-->
+<!--[if IE]>
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/2.4-latest/MathJax.js?config=TeX-AMS_HTML-full,Safe"></script>
+<![endif]-->
+</head>
+
+<body>
+<div id="container">
+<div id="header" class="noprint">
+<div id="nav" class="noprint">
+<ul>
+<li><a href="about" title="About" accesskey="h">About</a></li>
+<li id="current"><a href="archives" title="Archives" accesskey="1">Archives</a></li>
+<li><a href="recent" title="Recent" accesskey="2">Recent</a></li>
+<li><a href="progress" title="Progress" accesskey="3">Progress</a></li>
+<li><a href="account" title="Account" accesskey="4">Account</a></li>
+<li><a href="news" title="News" accesskey="5">News</a></li>
+<li><a href="friends" title="Friends" accesskey="6">Friends</a></li>
+<li><a href="statistics" title="Statistics" accesskey="7">Statistics</a></li>
+<li><a href="sign_out=276d43d69baaec1d35ba2ca22cfb52a0c8532ea8" title="Sign Out" accesskey="8">Sign Out</a></li>
+</ul>
+</div>
+
+<div id="logo" class="noprint">
+   <div>Project Euler<span>.net</span></div>
+</div>
+
+</div>
+
+<div id="info_panel"><div>Logged in as <strong>ewjoachim</strong><br />Sat, 2 Sep 2017, 14:24</div><a href="search"><img src="images/icon_search.png" alt="Search Problems" title="Search Problems" /></a><a href="rss2_euler.xml"><img src="images/icon_rss.png" alt="RSS Feed" title="RSS Feed" /></a></div>
+<div id="content">
+
+<table id="show_problem_table" class="noprint">
+<tr>
+<td><div id="previous_problem">&nbsp;</div></td>
+<td><div id="next_problem"><a href="problem=2" class="info"><span>Go to problem 2 (Solved):<br />&quot;Even Fibonacci numbers&quot;</span><img src="images/icon_next_solved.png" alt="Next" /></a></div></td>
+</tr>
+</table>
+<div style="text-align:center;" class="print"><img src="images/print_page_logo.png" alt="projecteuler.net" style="border:none;" /></div>
+<h2>Multiples of 3 and 5</h2><div id="problem_info"><h3>Problem 1 <span style="float:right;" class="info noprint"><img src="images/icon_info.png" style="width:18px;opacity:0.7;" /><span style="left:-400px;width:450px;font-size:80%;">Published on Friday, 5th October 2001, 07:00 pm; Solved by 684550;<br />Difficulty rating: 5%</span></h3></div>
+<div class="problem_content" role="problem">
+<p>If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23.</p>
+<p>Find the sum of all the multiples of 3 or 5 below 1000.</p>
+</div><br />
+<div style="text-align:center;" class="noprint">
+	<form name="form" method="post" action="problem=1">
+	<table width="400" cellpadding="10" align="center">
+	<tr>
+		<td>
+			<table>
+			<tr>
+				<td><div style="text-align:right;">Answer:</div></td>
+				<td style="text-align:left;">
+<b>233168</b>			</tr>
+			</table>
+		</td>
+	</tr>
+	</table>
+	</form>
+</div>
+<script type="text/javascript">
+var image_timer;
+var image_time = 10 * 60 * 1000;
+function update_image() {
+   clearTimeout(image_timer);
+   document.getElementById('captcha_image').src='captcha/show_captcha.php?'+Math.random();
+   image_timer = setTimeout(update_image, image_time);
+}
+function clear_image() {
+   document.getElementById('captcha_image').src='images/spacer.gif';
+}
+update_image();
+document.getElementById('guess').focus();
+scroll(0,0);
+</script>
+<p class="noprint">Go to the thread for <a href="thread=1">problem 1</a> in the forum.<br />Download overview for <a href="overview=001">problem 1</a>.</p></div>
+
+<div id="footer" class="noprint">
+Project Euler: <a href="copyright">Copyright Information</a> | <a href="privacy">Privacy Policy</a>
+<!--/Creative Commons License--><!-- <rdf:RDF xmlns="http://web.resource.org/cc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+   <Work rdf:about="">
+      <license rdf:resource="http://creativecommons.org/licenses/by-nc-sa/2.0/uk/" />
+   <dc:type rdf:resource="http://purl.org/dc/dcmitype/Text" />
+   </Work>
+   <License rdf:about="http://creativecommons.org/licenses/by-nc-sa/2.0/uk/"><permits rdf:resource="http://web.resource.org/cc/Reproduction"/><permits rdf:resource="http://web.resource.org/cc/Distribution"/><requires rdf:resource="http://web.resource.org/cc/Notice"/><requires rdf:resource="http://web.resource.org/cc/Attribution"/><prohibits rdf:resource="http://web.resource.org/cc/CommercialUse"/><permits rdf:resource="http://web.resource.org/cc/DerivativeWorks"/><requires rdf:resource="http://web.resource.org/cc/ShareAlike"/></License></rdf:RDF> -->
+</div>
+</div>
+</body>
+</html>

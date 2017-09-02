@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="author" content="Colin Hughes" />
+<meta name="description" content="A website dedicated to the fascinating world of mathematics and programming" />
+<meta name="keywords" content="programming,mathematics,problems,puzzles" />
+<title>Sign In - Project Euler</title>
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="stylesheet" type="text/css" href="themes/default/style_default.css" />
+</head>
+
+<body>
+<div id="container">
+<div id="header" class="noprint">
+<div id="nav" class="noprint">
+<ul>
+<li><a href="about" title="About" accesskey="h">About</a></li>
+<li><a href="archives" title="Archives" accesskey="1">Archives</a></li>
+<li><a href="recent" title="Recent" accesskey="2">Recent</a></li>
+<li><a href="news" title="News" accesskey="3">News</a></li>
+<li><a href="register" title="Register" accesskey="4">Register</a></li>
+<li id="current"><a href="sign_in" title="Sign In" accesskey="5">Sign In</a></li>
+</ul>
+</div>
+
+<div id="logo" class="noprint">
+   <div>Project Euler<span>.net</span></div>
+</div>
+
+</div>
+
+<div id="info_panel"><a href="search"><img src="images/icon_search.png" alt="Search Problems" title="Search Problems" /></a><a href="rss2_euler.xml"><img src="images/icon_rss.png" alt="RSS Feed" title="RSS Feed" /></a></div>
+<div id="content">
+
+<h2>Sign In</h2>
+<form name="sign_in_form" method="post" style="width:320px;" class="form_box">
+<table class="no_border" style="width:300px;">
+	<tr>
+		<td><div style="text-align:right;">Username:</div></td>
+      <td><input style="width:150px;" type="text" name="username" id="username" value="" /></td>
+	</tr>
+   <tr>
+		<td><div style="text-align:right;">Password:</div></td>
+      <td><input style="width:150px;" type="password" name="password" id="password" /></td>
+	</tr>
+   <tr>
+      <td><div style="text-align:right;">Confirmation Code:</div></td>
+   	<td><div style="text-align:left;"><input type="text" size="5" maxlength="5" autocomplete="off" name="captcha" /></div></td>
+   </tr>
+   <tr>
+      <td colspan="2">
+         <div style="text-align:center;font-size:80%;">
+            <img src="captcha/show_captcha.php" id="captcha_image" onclick="javascript:this.src='captcha/show_captcha.php?'+Math.random();" style="border:1px solid #999;" /><br />Click image for new code
+         </div>
+      </td>
+   </tr>
+   <tr>
+		<td colspan="2"><div style="text-align:center;"><label for="remember_me">Remember Me:&nbsp;&nbsp;</label><input type="checkbox" name="remember_me" id="remember_me" value="1" style="vertical-align:middle;" /></div></td>
+	</tr>
+   <tr>
+		<td>&nbsp;</td>
+      <td><input type="submit" name="sign_in" value="Sign In" /></td>
+	</tr>
+</table>
+</form>
+<script type="text/javascript">
+<!--Start
+document.getElementById('username').focus();
+//End-->
+</script>
+<p>If you have not already created an account then please <a href="register" title="Register">register</a>.<br />
+If you have forgotten your username and/or password and you have generated an<br />emergency account recovery key then you can use it to <a href="recovery">recover your account</a>.</p>
+<p style="font-size:90%;">If you already have an account, you have forgotten your password, you have NOT signed in to the new website,<br />and you have solved 100+ problems then <a href="about=account_recovery">read this</a>.</p></div>
+
+<div id="footer" class="noprint">
+Project Euler: <a href="copyright">Copyright Information</a> | <a href="privacy">Privacy Policy</a>
+<!--/Creative Commons License--><!-- <rdf:RDF xmlns="http://web.resource.org/cc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+   <Work rdf:about="">
+      <license rdf:resource="http://creativecommons.org/licenses/by-nc-sa/2.0/uk/" />
+   <dc:type rdf:resource="http://purl.org/dc/dcmitype/Text" />
+   </Work>
+   <License rdf:about="http://creativecommons.org/licenses/by-nc-sa/2.0/uk/"><permits rdf:resource="http://web.resource.org/cc/Reproduction"/><permits rdf:resource="http://web.resource.org/cc/Distribution"/><requires rdf:resource="http://web.resource.org/cc/Notice"/><requires rdf:resource="http://web.resource.org/cc/Attribution"/><prohibits rdf:resource="http://web.resource.org/cc/CommercialUse"/><permits rdf:resource="http://web.resource.org/cc/DerivativeWorks"/><requires rdf:resource="http://web.resource.org/cc/ShareAlike"/></License></rdf:RDF> -->
+</div>
+</div>
+</body>
+</html>

@@ -1,14 +1,30 @@
 import json
 import os
 
-from .utils import AutomaticMixin
+from . import utils
 
 
-class Config(AutomaticMixin):
+class Config():
+
+    def __getitem__(self, name):
+        try:
+            return self.get_config()[name]
+        except KeyError:
+            return None
+
+    def __setitem__(self, name, value):
+        return self.write_elements(**{name: value})
 
     @property
     def config_file(self):
-        return os.environ.get("PYLER_CONF", ".pyler.conf")
+        def ok_path(path):
+            return path and os.path.exists(path)
+
+        return next(filter(ok_path, [
+            os.environ.get("PYLER_CONF"),
+            os.path.expanduser(os.path.join("~", ".pyler.conf")),
+            ".pyler.conf",
+        ]), ".pyler.conf")
 
     def get_config(self):
         try:
@@ -18,19 +34,9 @@ class Config(AutomaticMixin):
                 handler.seek(0)
                 config = json.load(handler)
         except (IOError, ValueError):
-            config = self.get_default_config()
-            self.save_config(config)
+            config = {}
 
         return config
-
-    def get_default_config(self):
-        return {
-            "credentials": {
-                "username": None,
-                "password": None,
-            },
-            "session": None,
-        }
 
     def write_elements(self, **kwargs):
         config = self.get_config()
@@ -42,17 +48,19 @@ class Config(AutomaticMixin):
             json.dump(config, handler)
 
     def get_or_ask_for_credentials(self):
-        config = self.get_config()
-        credentials = config["credentials"]
+        credentials = self["credentials"] or {}
         order = ["username", "password"]
 
-        if all(credentials.values()):
+        if credentials and all(credentials.get(key) for key in order):
             return credentials
 
         for key in order:
-            if not credentials[key]:
-                credentials[key] = self.input("Project Euler {key} ?".format(key=key))
+            if not credentials.get(key):
+                credentials[key] = utils.user_input(
+                    "Project Euler {key}? ".format(key=key))
 
-        self.write_elements(credentials=credentials)
+        print("a ", credentials)
+        self["credentials"] = credentials
+        print("b ", self["credentials"])
 
         return credentials

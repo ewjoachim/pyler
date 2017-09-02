@@ -7,7 +7,7 @@ import re
 import sys
 import itertools
 
-from .website import Website
+from . import website as w
 
 TEMPLATE = """from pyler import EulerProblem
 
@@ -47,11 +47,14 @@ def iter_problem_ids(problem_string):
             continue
         group = group.split("-")
         if len(group) > 2:
-            raise argparse.ArgumentTypeError("Incorrect format for problem_id (range with more than 2 borders)")
+            raise argparse.ArgumentTypeError(
+                "Incorrect format for problem_id (range with more "
+                "than 2 borders)")
         try:
             group = [int(one_id) for one_id in group]
         except ValueError:
-            raise argparse.ArgumentTypeError("Incorrect format for problem_id (not an integer)")
+            raise argparse.ArgumentTypeError(
+                "Incorrect format for problem_id (not an integer)")
 
         if len(group) == 2:
             ids |= set(range(*sorted(group)))
@@ -59,7 +62,9 @@ def iter_problem_ids(problem_string):
             ids.add(group[0])
 
     if any(element < 1 for element in ids):
-        raise argparse.ArgumentTypeError("Incorrect format for problem_id (null or negative integer)")
+        raise argparse.ArgumentTypeError(
+            "Incorrect format for problem_id (null or negative "
+            "integer)")
 
     return sorted(ids)
 
@@ -91,6 +96,7 @@ def gen_files(problem_ids, path, force=False, template=None):
     if problem_ids is None:
         problem_ids = itertools.count(1)
 
+    website = w.Website()
     for problem_id in problem_ids:
 
         if template:
@@ -101,7 +107,7 @@ def gen_files(problem_ids, path, force=False, template=None):
 
         problem_id = int(problem_id)
         try:
-            doc = Website().get_problem_content(problem_id)
+            doc = w.get_problem_content(website, problem_id)
         except ValueError:
             break
         doc = textwrap.fill(doc, 76).replace("\n", "\n    ")
@@ -112,7 +118,8 @@ def gen_files(problem_ids, path, force=False, template=None):
             print("skipping {}".format(problem_id))
             continue
 
-        with open(os.path.join(path, FILE_NAME_TEMPLATE.format(problem_id)), "w") as handler:
+        file_name = FILE_NAME_TEMPLATE.format(problem_id)
+        with open(os.path.join(path, file_name), "w") as handler:
             handler.write(template_str.format(
                 problem_id=problem_id,
                 doc=doc,
@@ -123,41 +130,56 @@ def test_files(problem_ids, path, only, skip):
     problem_ids = complete_problem_ids(problem_ids, path)
 
     only = only or ["real", "simple", "time"]
-    tests = {"test_{}".format(test_name) for test_name in set(only) - set(skip)}
+    tests = {"test_{}".format(test_name)
+             for test_name in set(only) - set(skip)}
 
     sys.path.insert(0, os.path.abspath(path))
 
     py_files = set(all_files(path))
 
     if problem_ids is not None:
-        wanted_files = {FILE_NAME_TEMPLATE.format(problem_id) for problem_id in problem_ids}
+        wanted_files = {FILE_NAME_TEMPLATE.format(problem_id)
+                        for problem_id in problem_ids}
         py_files = py_files & wanted_files
 
-    modules = ["{}.Problem{}".format(file_name[:-3], file_name[-7:-3]) for file_name in py_files]
+    modules = [
+        "{}.Problem{}".format(file_name[:-3], file_name[-7:-3])
+        for file_name in py_files]
 
     tests_names = sorted(
         ".".join(module_test)
-        for module_test in itertools.product(modules, tests)
-    )
+        for module_test in itertools.product(modules, tests))
+
     unittest.main(module=None, argv=[""] + tests_names)
 
 
 def main():
     # create the top-level parser
     parser = argparse.ArgumentParser(prog='pyler')
-    parser.add_argument('--path', '-p', '--to', default=".", help="The folder in which problem files will be found")
+    parser.add_argument('--path', '-p', '--to',
+                        default=".",
+                        help="The folder in which problem files will be found")
 
     problem_ids_kwargs = {
         "type": iter_problem_ids,
-        "help": "The id(s) to generate or 'all', 'last', 'next'. Ex: '1', '1,2', '1-12,37-60' "
+        "help": "The id(s) to generate or 'all', 'last', "
+                "'next'. Ex: '1', '1,2', '1-12,37-60' "
     }
 
     subparsers = parser.add_subparsers()
 
-    parser_gen = subparsers.add_parser('gen', help="Generate a testcase file for a given problem")
-    parser_gen.add_argument('--force', '-f', action='store_true', help="Replaces an existing file if encountered")
-    parser_gen.add_argument('--template', '-t', help="Uses a specific template file (must contain {doc} and {problem_id}).")
-    parser_gen.add_argument('problem_ids', **problem_ids_kwargs)
+    parser_gen = subparsers.add_parser(
+        'gen',
+        help="Generate a testcase file for a given problem")
+    parser_gen.add_argument(
+        '--force', '-f', action='store_true',
+        help="Replaces an existing file if encountered")
+    parser_gen.add_argument(
+        '--template', '-t',
+        help="Uses a specific template file (must contain {doc} and "
+             "{problem_id}).")
+    parser_gen.add_argument(
+        'problem_ids', **problem_ids_kwargs)
     parser_gen.set_defaults(callback=gen_files)
 
     parser_test = subparsers.add_parser('test', help="Tests")
@@ -166,11 +188,13 @@ def main():
     parser_test.add_argument('problem_ids', **problem_ids_kwargs)
     parser_test.add_argument(
         '--skip', action="append", default=[],
-        help="Skip some tests among {}. (you can have several of these)".format(", ".join(tests))
+        help="Skip some tests among {}. (you can have several of these)"
+             "".format(", ".join(tests))
     )
     parser_test.add_argument(
         '--only', action="append", default=[],
-        help="Only run tests among {}. (you can have several of these)".format(", ".join(tests))
+        help="Only run tests among {}. (you can have several of these)"
+             "".format(", ".join(tests))
     )
     parser_test.set_defaults(callback=test_files)
 
